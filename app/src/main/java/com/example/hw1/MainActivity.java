@@ -53,9 +53,14 @@ public class MainActivity extends AppCompatActivity {
         mainCar = new CarActivity(car1,car2,car3);
         setVisibility();
         setButtonsClickListeners();
+        startGame();
 
 
 
+
+    }
+
+    private void startGame() {
         final Handler handler = new Handler();
 
         handler.postDelayed(new Runnable() {
@@ -73,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 mainRocks.startFallingRock();
             }
         });
-
-
-
     }
 
     private void crashCheck() {
