@@ -15,11 +15,15 @@ public class CarActivity   {
         this.car1 = car1;
         this.car2 = car2;
         this.car3 = car3;
-        car1.setVisibility(View.INVISIBLE);// make left and right car invisible
-        car3.setVisibility(View.INVISIBLE);// make left and right car invisible
+
     }
 
 
+
+    public void setCarInvis(){
+        car1.setVisibility(View.INVISIBLE);// make left and right car invisible
+        car3.setVisibility(View.INVISIBLE);// make left and right car invisible
+    }
 
 
     public void moveLeft() {

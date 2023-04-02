@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CountDownTimer timer;
 
+    private RockActivity mainRocks;
     private int counter = 1;
 
 
@@ -45,16 +46,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         findViews();
+        mainRocks = new RockActivity(main_IMG_rocks);
         mainCar = new CarActivity(car1,car2,car3);
+        setVisibility();
         setButtonsClickListeners();
+
+
 
         final Handler handler = new Handler();
 
         handler.postDelayed(new Runnable() {
             public void run() {
                 handler.postDelayed(this, 700);
-                changeRockPlaceView();
+                mainRocks.changeRockPlaceView();
                 crashCheck();
 
             }
@@ -63,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             public void run() {
                 handler.postDelayed(this,1700);
-                startFallingRock();
+                mainRocks.startFallingRock();
             }
         });
 
-        startTime();
+
 
     }
 
@@ -113,43 +120,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void changeRockPlaceView() {
-        boolean  check[][] = new boolean[7][3];
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 3; j++) {
-                if(i == 6)
-                    main_IMG_rocks[i][j].setVisibility(View.INVISIBLE);
-                if (main_IMG_rocks[i][j].getVisibility() == View.VISIBLE && check[i][j]==false && i <= 5  ) {
-                    main_IMG_rocks[i][j].setVisibility(View.INVISIBLE);
-                    main_IMG_rocks[i+1][j].setVisibility(View.VISIBLE);
-                    check[i+1][j] = true;
-                }
-
-            }
-
-        }
-    }
 
 
-    private void startTime() {
-        startTime = System.currentTimeMillis();
-        if (timer == null) {
-            timer = new CountDownTimer(999999999, 500) {
-                @Override
-                public void onTick(long millisUntilFinished) {
 
 
-                }
-
-                @Override
-                public void onFinish() {
-                    timer.cancel();
-                }
-            }.start();
-
-
-        }
-    }
 
     private void setButtonsClickListeners() {
 
@@ -158,6 +132,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+    private void setVisibility(){
+        mainRocks.setRocksInvis() ;
+        mainCar.setCarInvis();;
+    }
 
     private void findViews() {
         main_BTN_options = new MaterialButton[]{
@@ -173,14 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         setRocksView() ;
 
-
     }
-    private void startFallingRock() {
-        Random rand = new Random();
-        int randRock = rand.nextInt(3);//0-2
-        main_IMG_rocks[0][randRock].setVisibility(View.VISIBLE);
-    }
-
 
 
     private void setRocksView() {
@@ -195,16 +169,10 @@ public class MainActivity extends AppCompatActivity {
                 main_IMG_rocks[i][j] = ((ShapeableImageView) findViewById(resID));
             }
         }
-        setRocksInvis();
+
     }
 
-    private void setRocksInvis() {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.main_IMG_rocks[i][j].setVisibility(View.INVISIBLE);
-            }
-        }
-    }
+
     private void toastVibrator(Context context,Vibrator v,int life){
 
         if(life == 3)
