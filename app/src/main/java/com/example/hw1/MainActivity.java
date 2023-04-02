@@ -121,18 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     private void setButtonsClickListeners() {
 
         main_BTN_options[0].setOnClickListener(v->mainCar.moveLeft());
         main_BTN_options[1].setOnClickListener(v->mainCar.moveRight());
 
     }
-
-
 
 
     private void setVisibility(){
@@ -171,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     private void toastVibrator(Context context,Vibrator v,int life){
 
