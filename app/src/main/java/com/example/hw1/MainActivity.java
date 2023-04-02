@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(life == 3)
             life = 0;
-        Toast.makeText(context,"Crash!!! You have " + (main_IMG_hearts.length - life) +" life Left" ,Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"Crash!!! You have " + (main_IMG_hearts.length - life) +" life Left" ,Toast.LENGTH_SHORT).show();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
